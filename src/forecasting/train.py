@@ -1,23 +1,30 @@
 import pandas as pd
-from sklearn.linear_model import LinearRegression
 import joblib
+from sklearn.ensemble import RandomForestRegressor
 from pathlib import Path
 
 project_root = Path(__file__).resolve().parents[2]
-df = pd.read_csv(project_root / "src" / "data" / "raw" / "project_forecast.csv")
 
-print(df.head())
-print("\nMissing values:")
-print(df.isna().sum())
+df = pd.read_csv(
+    project_root / "src" / "data" / "raw" / "project_forecast.csv"
+)
+print(df.columns.tolist())
 
-df = df.dropna(subset=["revenue"])
+df = df.dropna(subset=["cost", "revenue"])
+X = df[["cost"]]
 
-X = [[i] for i in range(1, len(df)+1)]
 y = df["revenue"]
 
-model = LinearRegression()
+model = RandomForestRegressor(
+    n_estimators=100,
+    random_state=42
+)
+
 model.fit(X, y)
 
-joblib.dump(model, project_root / "models" / "revenue_model.pkl")
+joblib.dump(
+    model,
+    project_root / "models" / "revenue_model.pkl"
+)
 
 print("Model trained successfully.")
