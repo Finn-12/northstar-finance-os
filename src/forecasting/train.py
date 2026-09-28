@@ -1,8 +1,10 @@
 import pandas as pd
 from sklearn.linear_model import LinearRegression
 import joblib
+from pathlib import Path
 
-df = pd.read_csv("app/data/raw/project_forecast.csv")
+project_root = Path(__file__).resolve().parents[2]
+df = pd.read_csv(project_root / "src" / "data" / "raw" / "project_forecast.csv")
 
 print(df.head())
 print("\nMissing values:")
@@ -16,6 +18,6 @@ y = df["revenue"]
 model = LinearRegression()
 model.fit(X, y)
 
-joblib.dump(model, "revenue_model.pkl")
+joblib.dump(model, project_root / "models" / "revenue_model.pkl")
 
 print("Model trained successfully.")
