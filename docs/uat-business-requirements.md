@@ -5,8 +5,8 @@
 | Status | Draft for business review |
 | Product | NorthStar Finance OS |
 | Business capability | Guided monthly project updates and financial variance explanations |
-| Currency in supplied example | CAD |
-| Reference snapshot date | 1 October 2026 (PFF status: Approved) |
+| Currency in supplied example | [REDACTED] |
+| Reference snapshot date | [REDACTED] |
 | Primary users | Project Manager, Project Accountant, Finance Reviewer |
 
 ## 1. Purpose
@@ -61,37 +61,33 @@ These rules are the initial UAT contract and require confirmation by Finance bef
 
 Positive and negative signs must be consistent throughout the UI. A cost increase should be shown as an increase in cost and, where the approved margin formula applies, a decrease in margin. The product must not describe a correlation as a confirmed cause: explanations should say **“estimated impact based on the entered change”** unless the calculation is directly supported by the underlying values.
 
-## 6. Reference data supplied for UAT design
+## 6. Anonymized reference scenario for UAT design
 
-The following is transcribed from the user-provided PFF dashboard text, not imported from PFF and not independently verified. Treat it as a candidate fixture only after Finance reconciles the source layout and definitions.
+The source project name, project number, reporting dates, currency, and all project-specific financial values have been masked. This anonymized scenario is for requirements context only; it is not a verified fixture, a source-system import, or permission to use the original project data in testing.
 
-| Field | Candidate value |
-|---|---:|
-| Project number | 27796700 |
-| Project name | SCARBOROUGH SUBWAY EXTENS… (truncated in supplied text) |
-| Scope / status | In-Scope / Approved on 01 Oct 2026 |
-| Start / current end date | 20 Aug 2020 / 30 Apr 2028 |
-| Original end date | 07 Feb 2022 |
-| FPC | 100.0% in project details; 99.9% in financial report |
-| Currency | CAD |
-| Forecast at completion — last approved / new forecast | 21,289,305 / 21,289,305 |
-| Forecast project margin % — last approved / new forecast | 69.4% / 69.4% |
-| Actual profitability to last night | 21,238,200 |
-| Actual project margin % | 69.3% |
-| Cumulative project margin cashflow | 19,601,282 |
-| Cashflow summary: project margin less cashflow | 1.64M |
-| Debts outstanding, excluding tax | 32,446 |
-| Average debtor months | 0 |
-| Assumed cash delay | Manual |
+| Field | Masked value |
+|---|---|
+| Project number | [REDACTED] |
+| Project name | [REDACTED] |
+| Scope / status | [REDACTED] |
+| Start / current end date | [REDACTED] |
+| Original end date | [REDACTED] |
+| Completion percentage | [REDACTED] |
+| Currency | [REDACTED] |
+| Forecast-at-completion values | [REDACTED] |
+| Forecast margin percentage | [REDACTED] |
+| Actual profitability and margin | [REDACTED] |
+| Cumulative margin cashflow | [REDACTED] |
+| Debts and debtor timing | [REDACTED] |
 
 ### Source-data reconciliation required
 
-- The dashboard reports FPC as both **100.0%** and **99.9%**. Confirm which value belongs to the relevant report and month.
-- The flattened report text does not preserve all row/column boundaries. For example, the same excerpt appears to show more than one salary value and contains figures whose relationship to the stated totals is unclear. Do not infer field mappings from text order.
-- The report's summary, forecast-at-completion, actual-profitability, and cashflow sections are different measures. Do not merge or substitute them.
-- A current/prior monthly detail for named subconsultants and clients was not supplied. These must be entered as test scenarios, not invented as historical facts.
-- The repository's current `src/data/raw/project_forecast.csv` contains generic project `A001` data for January–May 2026 and does not represent project 27796700. It must not be presented as this project's actual history.
-- PFF access and a live integration have not been established by this brief. Any initial implementation should identify its figures as manually entered or fixture data until an approved integration is available.
+- The supplied dashboard text contained conflicting completion percentages. The actual values and their report context have been masked; Finance must resolve the conflict using an authorized source before any real baseline is used.
+- The flattened report text did not preserve all row/column boundaries. Do not infer field mappings or totals from text order.
+- Summary, forecast-at-completion, actual-profitability, and cashflow sections are different measures. Do not merge or substitute them.
+- No comparable monthly details for named clients or subconsultants are included here. Use synthetic test values for those scenarios.
+- The repository's sample forecast CSV contains generic prototype data and does not represent the anonymized reference project. It must not be presented as actual project history.
+- PFF access and a live integration have not been established by this brief. Any initial implementation should identify figures as manually entered or synthetic fixture data until an approved integration is available.
 
 ## 7. Ticket backlog and UAT acceptance criteria
 
@@ -130,7 +126,7 @@ Priority: **P0** = required for the first usable release; **P1** = important fol
 ## 9. Definition of Ready for first build
 
 - Finance confirms the authoritative definitions and category mappings for net revenue, project margin, margin percentage, cashflow, FPC, actuals, and forecast-at-completion.
-- Finance resolves the conflicting/ambiguous values in the 1 October 2026 PFF snapshot before it is used as a numeric baseline.
+- Finance resolves the conflicting/ambiguous values in the supplied PFF snapshot before it is used as a numeric baseline.
 - Product owner confirms the reporting month convention, whether updates are actual-to-date or full-month values, and who may approve a submission.
 - Product owner confirms whether project and supplier names/amounts may be stored in this prototype and what test dataset is authorized.
 - The team agrees which approved source systems, if any, will provide project, invoice, payroll, debt, and forecast data. Until then, data-entry and import states must be labelled accurately.
