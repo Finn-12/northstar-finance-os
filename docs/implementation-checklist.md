@@ -8,11 +8,22 @@ Update this section at the end of each work session.
 
 | Resume field | Current value |
 |---|---|
-| Current focus | DEV-001 — Confirm finance calculation contract |
-| Last completed ticket | None yet |
-| Next action | Confirm the finance definitions and comparison rules listed under “Decisions to resolve” in the delivery backlog |
-| Blockers / decisions needed | Finance approval is needed before margin-impact calculations; confirm the prototype's permitted test data and storage before implementing persistence |
-| Last worked on | Not started |
+| Current focus | MVP follow-up — confirm finance definitions and prototype data handling |
+| Last completed ticket | MVP slice: guided topic selection and subconsultant comparison |
+| Next action | Run the MVP locally, review the synthetic-only flow, then resolve finance mapping and storage decisions before extending scope |
+| Blockers / decisions needed | Finance approval is needed before margin-impact calculations; durable storage and real project data remain out of scope |
+| Last worked on | 2 October 2026 |
+
+## MVP delivery snapshot
+
+The first runnable slice is intentionally narrower than the full ticket acceptance scope: it uses one synthetic demo project, supports a guided topic list with only Subconsultants implemented, compares a manually entered actual invoice with synthetic prior-period data, and keeps the draft in the current browser session only. No margin calculation, approval workflow, or live data integration is included.
+
+| MVP slice | Built | Verified | Notes |
+|---|:---:|:---:|---|
+| Guided topic picker; remaining topics marked as later work | [x] | [x] | Streamlit AppTest covers deferred-topic messaging |
+| Synthetic supplier history and current invoice entry | [x] | [x] | Demo values use synthetic units; draft is session-only |
+| Same-supplier prior-month amount variance | [x] | [x] | Missing prior value is not treated as zero |
+| Finance-derived margin impact | [ ] | [ ] | Deliberately deferred pending Finance-approved mapping |
 
 ## Progress at a glance
 
@@ -22,18 +33,18 @@ Check **Ready** when the ticket's prerequisites and decisions are resolved, **Bu
 |---|:---:|:---:|:---:|---|
 | DEV-001 — Confirm finance calculation contract | [ ] | [ ] | [ ] | |
 | DEV-002 — Define project update data model | [ ] | [ ] | [ ] | |
-| DEV-003 — Add synthetic project fixture and repository boundary | [ ] | [ ] | [ ] | |
-| DEV-004 — Add monthly update session and draft state | [ ] | [ ] | [ ] | |
-| DEV-005 — Build guided topic selection | [ ] | [ ] | [ ] | |
+| DEV-003 — Add synthetic project fixture and repository boundary | [ ] | [x] | [ ] | Synthetic cost fixture only; full project model/repository and storage decision remain |
+| DEV-004 — Add monthly update session and draft state | [x] | [x] | [ ] | MVP draft is session-only; no selectable period or approved-snapshot workflow |
+| DEV-005 — Build guided topic selection | [x] | [x] | [x] | MVP scope only; remaining topics are deferred |
 | DEV-006 — Capture client and scope changes | [ ] | [ ] | [ ] | |
-| DEV-007 — Capture subconsultant costs | [ ] | [ ] | [ ] | |
+| DEV-007 — Capture subconsultant costs | [x] | [x] | [x] | MVP scope only; synthetic supplier data and session-only draft |
 | DEV-008 — Capture remaining monthly topics | [ ] | [ ] | [ ] | |
-| DEV-009 — Implement comparable-period variance calculations | [ ] | [ ] | [ ] | |
-| DEV-010 — Show item-level comparison and explanation | [ ] | [ ] | [ ] | |
+| DEV-009 — Implement comparable-period variance calculations | [x] | [x] | [ ] | Basic actual cost delta tested; full compatibility and edge-case coverage remains |
+| DEV-010 — Show item-level comparison and explanation | [x] | [x] | [ ] | MVP comparison only; no Finance-derived margin explanation or category bridge |
 | DEV-011 — Reconcile category bridge to project totals | [ ] | [ ] | [ ] | |
 | DEV-012 — Add submission validation | [ ] | [ ] | [ ] | |
 | DEV-013 — Add review status and immutable snapshots | [ ] | [ ] | [ ] | |
-| DEV-014 — Add focused end-to-end UAT tests | [ ] | [ ] | [ ] | |
+| DEV-014 — Add focused end-to-end UAT tests | [x] | [x] | [ ] | MVP-only UI and calculation cases pass; remaining UAT scenarios are not yet covered |
 
 ## Ticket checklist
 
@@ -111,7 +122,7 @@ Add one short entry when you stop working. Record ticket IDs and file paths, but
 
 | Date | Tickets touched | Outcome / verification | Next action |
 |---|---|---|---|
-| Not started | — | Backlog checklist created; implementation not started | Start with DEV-001 and resolve prerequisite decisions |
+| 2026-10-02 | MVP slice; DEV-003–005, DEV-007, partial DEV-009/010/014 | Added guided Streamlit topic selection, synthetic subconsultant history, session-only invoice draft, actual cost comparison, and focused tests. Six calculation tests and three UI tests pass; browser launch smoke check succeeded. | Review the MVP; resolve finance mapping and permitted storage before adding margin or persistence |
 
 ## End-of-session reminder
 
@@ -120,4 +131,3 @@ Add one short entry when you stop working. Record ticket IDs and file paths, but
 - [ ] Add a short work-session log row.
 - [ ] Leave incomplete tickets unchecked; mark **Verified** only after acceptance checks pass.
 - [ ] Keep test data synthetic or explicitly approved.
-
